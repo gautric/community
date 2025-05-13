@@ -96,7 +96,7 @@ Resources:
       ResourcesVpcConfig:
         SubnetIds: !Ref SubnetIds
         SecurityGroupIds:
- - !Ref VpcSecurityGroupId
+          - !Ref VpcSecurityGroupId
 
   # Node Instance Role
   NodeInstanceRole:
