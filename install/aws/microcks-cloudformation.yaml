@@ -1,4 +1,3 @@
----
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Deploy Microcks on Amazon EKS with Aurora PostgreSQL and DocumentDB, using Helm via Lambda.
 
@@ -478,4 +477,3 @@ Outputs:
   MicrocksURL:
     Description: URL to access Microcks
     Value: !Sub https://${MicrocksDomain}
----
