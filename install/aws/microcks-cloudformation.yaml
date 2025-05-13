@@ -72,6 +72,19 @@ Parameters:
     Description: Domain for Microcks (e.g., microcks.your-domain.com or microcks.<INGRESS_IP>.nip.io)
 
 Resources:
+
+  # EKS Cluster
+  EKSCluster:
+    Type: AWS::EKS::Cluster
+    Properties:
+      Name: !Ref ClusterName
+      Version: !Ref KubernetesVersion
+      RoleArn: !GetAtt EKSClusterRole.Arn
+      ResourcesVpcConfig:
+        SubnetIds: !Ref SubnetIds
+        SecurityGroupIds:
+          - !Ref VpcSecurityGroupId
+
   # EKS Cluster Role
   EKSClusterRole:
     Type: AWS::IAM::Role
@@ -85,18 +98,6 @@ Resources:
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-
-  # EKS Cluster
-  EKSCluster:
-    Type: AWS::EKS::Cluster
-    Properties:
-      Name: !Ref ClusterName
-      Version: !Ref KubernetesVersion
-      RoleArn: !GetAtt EKSClusterRole.Arn
-      ResourcesVpcConfig:
-        SubnetIds: !Ref SubnetIds
-        SecurityGroupIds:
-          - !Ref VpcSecurityGroupId
 
   # Node Instance Role
   NodeInstanceRole:
